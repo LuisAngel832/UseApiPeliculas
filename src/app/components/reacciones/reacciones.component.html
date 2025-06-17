@@ -1,0 +1,10 @@
+<div class="d-flex gap-2 flex-wrap mt-2">
+  <button
+    *ngFor="let reaccion of reacciones"
+    (click)="reaccionar(reaccion.tipo)"
+    class="btn btn-outline-secondary btn-sm d-flex align-items-center"
+  >
+    <span class="me-1">{{ reaccion.icono }}</span>
+    <span>{{ reaccion.contador }}</span>
+  </button>
+</div>

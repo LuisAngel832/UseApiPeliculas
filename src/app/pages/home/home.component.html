@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <h3>Publicaciones</h3>
+
+  <!-- Formulario de nuevo tweet -->
+  <form (submit)="crearTweet()" [formGroup]="tweetForm" class="mb-4">
+    <textarea
+      formControlName="tweet"
+      class="form-control mb-2"
+      placeholder="¿Qué estás viendo?"
+    ></textarea>
+    <input
+      formControlName="imagenUrl"
+      class="form-control mb-2"
+      placeholder="URL de imagen (opcional)"
+    />
+    <button class="btn btn-primary" [disabled]="tweetForm.invalid">
+      Publicar
+    </button>
+  </form>
+
+  <!-- Tweets -->
+  <div *ngFor="let t of tweets" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ t.postedBy.username }}</h5>
+      <p class="card-text">{{ t.tweet }}</p>
+      <img *ngIf="t.imagenUrl" [src]="t.imagenUrl" class="img-fluid mb-2" />
+
+      <!-- ✅ Componente de Reacciones -->
+      <app-reacciones [tweetId]="t.id"></app-reacciones>
+
+      <!-- Comentarios -->
+      <div class="mb-2 mt-2">
+        <form (submit)="comentar(t.id, comentario[t.id])">
+          <input
+            class="form-control form-control-sm"
+            placeholder="Agregar comentario"
+            [(ngModel)]="comentario[t.id]"
+            name="comentario{{ t.id }}"
+          />
+        </form>
+      </div>
+      <ul class="list-group list-group-flush" *ngIf="t.comentarios?.length">
+        <li *ngFor="let c of t.comentarios" class="list-group-item small">
+          <b>{{ c.usuario.username }}:</b> {{ c.contenido }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
