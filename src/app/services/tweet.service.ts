@@ -5,7 +5,7 @@ import { AuthService } from './auth.Service';
 
 @Injectable({ providedIn: 'root' })
 export class TweetService {
-  private apiUrl = 'http://localhost:8080/api/tweets';
+  private apiUrl = 'https://socialapipeliculas.onrender.com/api/tweets';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 

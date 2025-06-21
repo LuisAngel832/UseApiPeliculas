@@ -4,7 +4,7 @@ import { AuthService } from './auth.Service';
 
 @Injectable({ providedIn: 'root' })
 export class ReaccionService {
-  private apiUrl = 'http://localhost:8080/api/reacciones';
+  private apiUrl = 'https://socialapipeliculas.onrender.com/api/reacciones';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
